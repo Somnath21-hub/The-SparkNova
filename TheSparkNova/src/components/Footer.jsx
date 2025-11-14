@@ -112,11 +112,11 @@ const Footer = () => {
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-2 text-gray-600">
                 <FaEnvelope className="w-4 h-4" />
-                <span>info@thesparknova.com</span>
+                <span>helloidea@thesparknova.com</span>
               </li>
               <li className="flex items-center gap-2 text-gray-600">
                 <FaPhone className="w-4 h-4" />
-                <span>+91-XXXXXXXXXX</span>
+                <span>+91-9631410611</span>
               </li>
               <li className="flex items-start gap-2 text-gray-600">
                 <FaMapMarkerAlt className="w-4 h-4 mt-1" />
