@@ -1,9 +1,8 @@
 import { useEffect, useRef } from "react";
-
 import { BiTargetLock } from "react-icons/bi";
 import { AiOutlineEye } from "react-icons/ai";
+import gsap from "gsap";
 
-// Component 1: Hero Section with Our Story, Mission & Vision
 const HeroSection = () => {
   const sectionRef = useRef(null);
   const storyRef = useRef(null);
@@ -11,27 +10,47 @@ const HeroSection = () => {
   const visionRef = useRef(null);
 
   useEffect(() => {
-    // Simple fade-in animation without GSAP
-    const elements = [storyRef.current, missionRef.current, visionRef.current];
-    elements.forEach((el, index) => {
-      if (el) {
-        setTimeout(() => {
-          el.style.opacity = "1";
-          el.style.transform = "translateY(0)";
-        }, index * 200);
-      }
-    });
+    // GSAP timeline for sequential fade-in
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+    tl.fromTo(
+      storyRef.current,
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 0.8 }
+    )
+      .fromTo(
+        missionRef.current,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.8 },
+        "-=0.3"
+      )
+      .fromTo(
+        visionRef.current,
+        { opacity: 0, y: 40 },
+        { opacity: 1, y: 0, duration: 0.8 },
+        "-=0.3"
+      );
   }, []);
 
   return (
-    <div ref={sectionRef} className="bg-gray-50 py-16 px-4">
-      <div className="max-w-6xl mx-auto">
+    <div
+      ref={sectionRef}
+      className="relative bg-gradient-to-bl from-blue-50 via-[#C7E7F3] to-purple-100 py-16 px-4 min-h-[90vh] overflow-hidden"
+    >
+      {/* Animated Star Decoration */}
+      <div className="absolute top-8 left-8 w-16 h-16 rounded-full bg-gradient-to-br from-pink-200 to-emerald-100 opacity-70 blur-lg" />
+      <div className="absolute bottom-12 right-12 w-24 h-24 rounded-full bg-gradient-to-tr from-amber-100 to-indigo-100 opacity-60 blur-2xl" />
+
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Page Header */}
         <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-gray-900 mb-4">
-            About TheSparknova
+          <h1 className="text-5xl font-extrabold text-gray-900 mb-4 drop-shadow-lg">
+            About{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">
+              TheSparknova
+            </span>
           </h1>
-          <p className="text-gray-600 text-lg">
+          <p className="text-gray-600 text-lg font-medium">
             Democratizing entrepreneurship support for tier 2-3 educational
             institutions
           </p>
@@ -40,11 +59,10 @@ const HeroSection = () => {
         {/* Our Story Section */}
         <div
           ref={storyRef}
-          className="mb-20 transition-all duration-700"
-          style={{ opacity: 0, transform: "translateY(30px)" }}
+          className="mb-20 bg-white/80 shadow-md rounded-2xl p-8 border-l-4 border-blue-300"
         >
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
-          <div className="space-y-4 text-gray-600 leading-relaxed">
+          <div className="space-y-4 text-gray-700 leading-relaxed">
             <p>
               TheSparknova was born from a simple observation: while tier 1
               institutions had well-established startup ecosystems, talented
@@ -71,13 +89,12 @@ const HeroSection = () => {
           {/* Mission Card */}
           <div
             ref={missionRef}
-            className="bg-white rounded-2xl p-8 shadow-lg transition-all duration-700"
-            style={{ opacity: 0, transform: "translateY(30px)" }}
+            className="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transform transition-all duration-300 hover:-translate-y-2 border-t-4 border-teal-200"
           >
-            <div className="w-12 h-12 bg-[#E8F4F6] rounded-full flex items-center justify-center mb-6">
-              <BiTargetLock className="w-6 h-6 text-[#32808D]" />
+            <div className="w-14 h-14 bg-[#E8F4F6] rounded-full flex items-center justify-center mb-6 shadow">
+              <BiTargetLock className="w-7 h-7 text-[#32808D]" />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            <h3 className="text-2xl font-extrabold text-gray-900 mb-4">
               Our Mission
             </h3>
             <p className="text-gray-600 leading-relaxed">
@@ -91,13 +108,12 @@ const HeroSection = () => {
           {/* Vision Card */}
           <div
             ref={visionRef}
-            className="bg-white rounded-2xl p-8 shadow-lg transition-all duration-700"
-            style={{ opacity: 0, transform: "translateY(30px)" }}
+            className="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transform transition-all duration-300 hover:-translate-y-2 border-t-4 border-blue-200"
           >
-            <div className="w-12 h-12 bg-[#E8F4F6] rounded-full flex items-center justify-center mb-6">
-              <AiOutlineEye className="w-6 h-6 text-[#32808D]" />
+            <div className="w-14 h-14 bg-[#E8F4F6] rounded-full flex items-center justify-center mb-6 shadow">
+              <AiOutlineEye className="w-7 h-7 text-[#32808D]" />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            <h3 className="text-2xl font-extrabold text-gray-900 mb-4">
               Our Vision
             </h3>
             <p className="text-gray-600 leading-relaxed">
