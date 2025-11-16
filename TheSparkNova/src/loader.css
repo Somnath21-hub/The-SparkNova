@@ -1,0 +1,74 @@
+/* Fullscreen loader container */
+.spark-loader-container {
+  width: 100vw;
+  height: 100vh;
+  background: #EEFCFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* Outer ring */
+.spark-outer-ring {
+  width: 170px;
+  height: 170px;
+  border: 6px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #37a6cb;
+  border-radius: 50%;
+  animation: spin 1.6s linear infinite;
+}
+
+/* Inner ring */
+.spark-inner-ring {
+  width: 105px;
+  height: 105px;
+  position: absolute;
+  border: 6px solid rgba(255, 255, 255, 0.1);
+  border-bottom-color: #ffffff;
+  border-radius: 50%;
+  animation: spinReverse 1.4s linear infinite;
+}
+
+/* Percentage text */
+.spark-loader-text {
+  margin-top: 25px;
+  font-size: 28px;
+  font-weight: 600;
+  color: white;
+  font-family: Poppins, sans-serif;
+  letter-spacing: 1px;
+}
+
+.spark-loader-text span {
+  color: #ff7d00;
+}
+
+/* Brand text (UPDATED TO THEME COLORS) */
+.spark-branding {
+  margin-top: 8px;
+  font-size: 20px;
+  font-family: Poppins, sans-serif;
+  color: #37a6cb;          /* ✅ Light blue text (matches website) */
+  letter-spacing: 1px;
+}
+
+.spark-branding span {
+  color: #37a6cb;          /* ✅ SparkNova Orange highlight */
+  font-weight: 600;
+}
+
+/* Animations */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes spinReverse {
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
+}
