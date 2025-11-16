@@ -12,18 +12,17 @@ const Mentor = () => {
         sectionRef.current.style.opacity = "1";
         sectionRef.current.style.transform = "translateY(0)";
       }
-
       setTimeout(() => {
         if (benefitsRef.current) {
           const items = benefitsRef.current.querySelectorAll(".benefit-item");
           items.forEach((item, index) => {
             setTimeout(() => {
               item.style.opacity = "1";
-              item.style.transform = "translateX(0)";
-            }, index * 150);
+              item.style.transform = "translateY(0)";
+            }, index * 120);
           });
         }
-      }, 300);
+      }, 250);
 
       setTimeout(() => {
         if (expertiseRef.current) {
@@ -32,32 +31,33 @@ const Mentor = () => {
           items.forEach((item, index) => {
             setTimeout(() => {
               item.style.opacity = "1";
-              item.style.transform = "translateX(0)";
-            }, index * 100);
+              item.style.transform = "scale(1)";
+            }, index * 80);
           });
         }
-      }, 800);
+      }, 750);
     };
-
     animateSection();
   }, []);
 
   const benefits = [
     {
-      icon: <FaCalendarAlt className="w-5 h-5" />,
+      icon: <FaCalendarAlt className="w-6 h-6" />,
       title: "Flexible Commitment",
-      description: "Choose your availability and engagement level",
+      description: "Set your own volunteering pace",
+      gradient: "from-cyan-100 to-blue-100",
     },
     {
-      icon: <FaAward className="w-5 h-5" />,
+      icon: <FaAward className="w-6 h-6" />,
       title: "Meaningful Impact",
-      description:
-        "Help students from tier 2-3 colleges build successful ventures",
+      description: "Guide startups to success, directly",
+      gradient: "from-teal-100 to-cyan-100",
     },
     {
-      icon: <FaGlobe className="w-5 h-5" />,
-      title: "Matched to Your Expertise",
-      description: "We connect you with startups in your domain",
+      icon: <FaGlobe className="w-6 h-6" />,
+      title: "Tailored Matching",
+      description: "Connect only with relevant teams",
+      gradient: "from-blue-100 to-teal-100",
     },
   ];
 
@@ -71,36 +71,45 @@ const Mentor = () => {
   ];
 
   return (
-    <div className="bg-gray-50 py-16 px-4">
+    <div className="relative bg-gradient-to-br from-cyan-50 via-white to-teal-50 py-24 px-4 overflow-hidden">
+      <div className="absolute top-10 left-10 w-64 h-32 bg-gradient-to-br from-cyan-100 to-blue-100 opacity-10 rounded-full blur-3xl pointer-events-none" />
       <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Left Side - Become a Mentor */}
-          <div
-            ref={sectionRef}
-            className="transition-all duration-700"
-            style={{ opacity: 0, transform: "translateY(30px)" }}
-          >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Become a Mentor
-            </h2>
-            <p className="text-gray-600 leading-relaxed mb-8">
-              Share your expertise and shape the next generation of
-              entrepreneurs. Our mentors dedicate 2-4 hours per month to guide
-              student founders.
-            </p>
-
-            <div ref={benefitsRef} className="space-y-6">
-              {benefits.map((benefit, index) => (
+        <div
+          ref={sectionRef}
+          className="text-center mb-16 transition-all duration-700"
+          style={{ opacity: 0, transform: "translateY(30px)" }}
+        >
+          <h2 className="text-4xl md:text-5xl font-extrabold text-[#152F38] mb-6">
+            Become a Mentor
+          </h2>
+          <p className="text-lg text-[#32808D] md:text-xl max-w-2xl mx-auto">
+            Empower the next generation of founders. Volunteer as little as{" "}
+            <span className="font-bold">2 hours monthly</span> to make a lasting
+            difference.
+          </p>
+        </div>
+        <div className="flex flex-col lg:flex-row gap-14">
+          <div className="w-full lg:w-7/12 mb-10 lg:mb-0">
+            <h3 className="text-2xl font-bold text-[#152F38] mb-7 text-left lg:text-center">
+              Mentor Perks
+            </h3>
+            <div
+              ref={benefitsRef}
+              className="flex flex-col md:flex-row gap-6 md:gap-8 justify-center items-stretch"
+            >
+              {benefits.map((benefit, idx) => (
                 <div
-                  key={index}
-                  className="benefit-item transition-all duration-700"
-                  style={{ opacity: 0, transform: "translateX(-30px)" }}
+                  key={idx}
+                  className={`benefit-item bg-gradient-to-br ${benefit.gradient} rounded-2xl shadow-xl px-7 py-8 flex-1 flex flex-col items-center transition-all duration-700`}
+                  style={{ opacity: 0, transform: "translateY(30px)" }}
                 >
-                  <div className="flex items-start gap-3 mb-2">
-                    <div className="text-[#32808D] mt-1">{benefit.icon}</div>
-                    <h3 className="font-bold text-gray-900">{benefit.title}</h3>
-                  </div>
-                  <p className="text-gray-600 text-sm ml-8">
+                  <span className="mb-4 w-12 h-12 bg-white rounded-full flex items-center justify-center text-[#32808D] shadow-lg">
+                    {benefit.icon}
+                  </span>
+                  <h4 className="font-semibold text-lg text-[#0d2b2e] mb-2 text-center">
+                    {benefit.title}
+                  </h4>
+                  <p className="text-gray-700 text-sm text-center">
                     {benefit.description}
                   </p>
                 </div>
@@ -108,26 +117,31 @@ const Mentor = () => {
             </div>
           </div>
 
-          {/* Right Side - Areas of Expertise */}
-          <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              Areas of Expertise
-            </h3>
-            <div ref={expertiseRef} className="space-y-3">
-              {expertiseAreas.map((area, index) => (
-                <div
-                  key={index}
-                  className="expertise-item flex items-center gap-3 transition-all duration-700"
-                  style={{ opacity: 0, transform: "translateX(30px)" }}
-                >
-                  <div className="w-2 h-2 bg-[#32808D] rounded-full"></div>
-                  <span className="text-gray-700">{area}</span>
-                </div>
-              ))}
+          <div className="w-full lg:w-5/12">
+            <div className="bg-white/90 backdrop-blur-md rounded-3xl shadow-xl px-10 py-10 border-l-8 border-teal-200">
+              <h3 className="text-2xl font-bold text-[#0d2b2e] mb-6">
+                Areas of Expertise
+              </h3>
+              <div
+                ref={expertiseRef}
+                className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-4"
+              >
+                {expertiseAreas.map((area, i) => (
+                  <div
+                    key={i}
+                    className="expertise-item flex items-center bg-gradient-to-r from-cyan-50 to-teal-50 px-4 py-2 rounded-xl font-medium text-[#32808D] text-base shadow transition-transform duration-700"
+                    style={{ opacity: 0, transform: "scale(0.95)" }}
+                  >
+                    <span className="w-2 h-2 rounded-full bg-[#00B3B3] mr-3"></span>
+                    {area}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div className="absolute bottom-2 right-20 w-40 h-12 bg-gradient-to-br from-teal-100 to-blue-100 opacity-8 rounded-2xl blur-2xl pointer-events-none" />
     </div>
   );
 };

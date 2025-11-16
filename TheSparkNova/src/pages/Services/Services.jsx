@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import ServiceCard from "./ServiceCard";
 import GetStarted from "../../components/GetStarted";
+import gsap from "gsap";
 
 const serviceData = [
   {
@@ -86,38 +87,67 @@ const serviceData = [
 ];
 
 const Services = () => {
+  const titleRef = useRef(null);
+  const cardsRef = useRef([]);
+
+  useEffect(() => {
+    if (titleRef.current) {
+      gsap.fromTo(
+        titleRef.current,
+        { opacity: 0, y: 32 },
+        { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }
+      );
+    }
+    if (cardsRef.current) {
+      gsap.fromTo(
+        cardsRef.current,
+        { opacity: 0, y: 28 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.55,
+          ease: "power3.out",
+          stagger: 0.17,
+          delay: 0.3,
+        }
+      );
+    }
+  }, []);
+
   return (
-    <div className="w-full bg-white py-16">
-      {/* CENTERED CONTENT — WITH SIDE MARGINS */}
-      <div className="px-6 md:px-20">
-        <h2 className="text-4xl md:text-5xl font-bold text-center text-[#0d2b2e]">
-          Our Services
-        </h2>
-
-        <p className="text-center mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-          Comprehensive solutions for building and scaling successful incubation
-          ecosystems
-        </p>
-
+    <section className="relative w-full bg-gradient-to-br from-cyan-50 via-white to-teal-50 py-16 overflow-x-hidden">
+      <div className="px-6 pt-16 md:px-20">
+        {/* Section title */}
+        <div ref={titleRef}>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-center text-[#0d2b2e]">
+            Our Services
+          </h2>
+          <p className="text-center mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+            Comprehensive solutions for building and scaling successful
+            incubation ecosystems
+          </p>
+        </div>
+        {/* Animated Cards */}
         <div className="mt-16 space-y-14">
           {serviceData.map((service, index) => (
-            <ServiceCard key={index} service={service} />
+            <div key={index} ref={(el) => (cardsRef.current[index] = el)}>
+              <ServiceCard service={service} />
+            </div>
           ))}
         </div>
       </div>
-
-      {/* FULL WIDTH CTA — NO MARGIN */}
+      {/* CTA */}
       <div className="mt-20">
         <GetStarted
           heading={"Ready to Get Started? "}
           para={
-            " Choose the services that fit your needs or contact us for a customized solution"
+            "Choose the services that fit your needs or contact us for a customized solution"
           }
           btn1={"Contact US"}
           btn2={"View Partnership Plans"}
         />
       </div>
-    </div>
+    </section>
   );
 };
 

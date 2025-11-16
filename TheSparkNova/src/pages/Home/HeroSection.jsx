@@ -66,7 +66,7 @@ const HeroSection = () => {
       <div className="relative z-10 max-w-4xl w-full mx-auto">
         <h2
           ref={headlineRef}
-          className="text-4xl md:text-6xl font-extrabold leading-tight text-[#0d2b2e] mb-6 tracking-tight"
+          className="text-4xl md:text-6xl font-extrabold leading-tight text-[#0d2b2e] mb-6 pt-16 tracking-tight"
         >
           Empowering Tier 2-3 College Incubation Centers to Build Tomorrow's
           Startups
