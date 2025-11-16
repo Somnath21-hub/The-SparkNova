@@ -35,7 +35,6 @@ const UpcomingEvents = () => {
       ? events
       : events.filter((e) => e.type === activeFilter.toUpperCase());
 
-  // Light, compact badge color
   const typeColors = {
     IDEATHON: "bg-gradient-to-r from-teal-100 to-cyan-100 text-teal-700",
     WORKSHOP: "bg-gradient-to-r from-cyan-100 to-blue-100 text-blue-700",
@@ -44,7 +43,7 @@ const UpcomingEvents = () => {
 
   return (
     <div className="relative bg-gradient-to-br from-cyan-50 via-white to-teal-50 py-20 px-4 min-h-[90vh]">
-      {/* (Background accent shapes can be omitted as needed) */}
+      +
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-extrabold text-gray-900 mb-3 tracking-tight">
@@ -54,8 +53,7 @@ const UpcomingEvents = () => {
             Join our events and accelerate your startup journey
           </p>
         </div>
-
-        {/* Responsive, minimal-width Filter Tabs */}
+        +
         <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-14">
           {filters.map((filter) => (
             <button
@@ -70,22 +68,19 @@ const UpcomingEvents = () => {
               `}
               style={{
                 flex: "0 0 auto",
-                maxWidth: "180px", // Prevent tabs from getting too wide
+                maxWidth: "180px",
               }}
             >
               {filter}
             </button>
           ))}
         </div>
-
-        {/* Event Cards */}
         <div className="grid md:grid-cols-3 gap-8">
           {filteredEvents.map((event, index) => (
             <div
               key={index}
               className="group bg-white rounded-2xl p-7 shadow border border-gray-100 hover:border-teal-200 transition duration-200 flex flex-col"
             >
-              {/* Type badge */}
               <span
                 className={`inline-block w-[45%] px-4 py-1 rounded text-xs font-semibold mb-5 ${
                   typeColors[event.type]

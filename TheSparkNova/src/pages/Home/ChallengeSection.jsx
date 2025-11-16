@@ -1,14 +1,7 @@
 import React, { useEffect, useRef } from "react";
-import {
-  FaArrowRight,
-  FaChartLine,
-  FaUsers,
-  FaLightbulb,
-  FaBuilding,
-} from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 import { IoMdCheckmarkCircle } from "react-icons/io";
 
-// Component 1: Hero Section - The Challenge & Our Solution
 const ChallengeSection = () => {
   const challengeRef = useRef(null);
   const solutionRef = useRef(null);
