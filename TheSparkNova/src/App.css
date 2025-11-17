@@ -1,0 +1,66 @@
+/* Team animation related css  */
+.marquee-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.marquee-container::-webkit-scrollbar {
+  display: none;
+}
+
+.marquee {
+  display: flex;
+  animation: marquee-scroll 6s linear infinite;
+  will-change: transform;
+}
+
+.marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 800px) {
+  .marquee-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  .marquee-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .marquee {
+    animation: none;
+  }
+}
+
+/* Navbar animation */
+
+.animate-underline {
+  animation: underline-gradient 0.5s ease-out;
+}
+@keyframes underline-gradient {
+  0% {
+    transform: scaleX(0);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}

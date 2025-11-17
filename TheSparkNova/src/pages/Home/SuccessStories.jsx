@@ -1,30 +1,30 @@
 import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
 
 const SuccessStories = () => {
   const titleRef = useRef(null);
-  const storiesRef = useRef(null);
+  const cardsRef = useRef([]);
 
   useEffect(() => {
-    const animateSection = () => {
-      if (titleRef.current) {
-        titleRef.current.style.opacity = "1";
-        titleRef.current.style.transform = "translateY(0)";
-      }
-
-      setTimeout(() => {
-        if (storiesRef.current) {
-          const cards = storiesRef.current.querySelectorAll(".story-card");
-          cards.forEach((card, index) => {
-            setTimeout(() => {
-              card.style.opacity = "1";
-              card.style.transform = "translateY(0)";
-            }, index * 200);
-          });
+    gsap.fromTo(
+      titleRef.current,
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }
+    );
+    if (cardsRef.current) {
+      gsap.fromTo(
+        cardsRef.current,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power3.out",
+          stagger: 0.18,
+          delay: 0.15,
         }
-      }, 300);
-    };
-
-    animateSection();
+      );
+    }
   }, []);
 
   const stories = [
@@ -49,40 +49,35 @@ const SuccessStories = () => {
   ];
 
   return (
-    <div className="bg-white py-16 px-4">
+    <section className="bg-gradient-to-br from-cyan-50 via-white to-teal-50 py-20 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Title */}
-        <div
-          ref={titleRef}
-          className="text-center mb-12 transition-all duration-700"
-          style={{ opacity: 0, transform: "translateY(30px)" }}
-        >
-          <h2 className="text-4xl font-bold text-gray-900 mb-3">
+        <div ref={titleRef} className="text-center mb-12">
+          <h2 className="text-4xl font-extrabold text-[#0d2b2e] mb-3 tracking-tight">
             Success Stories
           </h2>
           <p className="text-gray-600 text-lg">Hear from our community</p>
         </div>
-
         {/* Stories Grid */}
-        <div ref={storiesRef} className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-8">
           {stories.map((story, index) => (
             <div
               key={index}
-              className="story-card bg-gray-50 rounded-xl p-8 transition-all duration-700"
-              style={{ opacity: 0, transform: "translateY(30px)" }}
+              ref={(el) => (cardsRef.current[index] = el)}
+              className="story-card bg-white/90 backdrop-blur rounded-2xl p-8 border-t-4 border-cyan-100 hover:border-teal-400 shadow transition duration-300 flex flex-col items-start"
             >
-              <p className="text-gray-700 italic leading-relaxed mb-6">
+              <p className="text-gray-700 italic mb-6 leading-relaxed">
                 {story.quote}
               </p>
-              <div>
-                <p className="font-bold text-gray-900">{story.name}</p>
+              <div className="mt-auto">
+                <p className="font-bold text-[#00b3b3]">{story.name}</p>
                 <p className="text-sm text-gray-600">{story.role}</p>
               </div>
             </div>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
