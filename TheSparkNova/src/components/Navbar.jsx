@@ -32,7 +32,7 @@ const Navbar = () => {
 
   return (
     <nav className="w-full fixed top-6 left-0 z-50 pointer-events-none px-3 sm:px-6 lg:px-8">
-      <div className="relative max-w-5xl mx-auto pointer-events-auto">
+      <div className="relative max-w-6xl mx-auto pointer-events-auto">
         {/* Background */}
         <div className="absolute inset-0 h-20 bg-white/60 border-y border-cyan-200 backdrop-blur-xl shadow-xl rounded-xl pointer-events-none" />
         <div className="relative flex items-center justify-between h-20 px-3 sm:px-6">
