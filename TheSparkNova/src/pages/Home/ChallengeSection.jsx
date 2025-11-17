@@ -19,64 +19,72 @@ const ChallengeSection = () => {
         }
       }, 300);
     };
-
     animateElements();
   }, []);
 
   return (
-    <div className="bg-gray-50 py-16 px-4">
+    <div className="bg-gray-50 py-20 px-6">
       <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* The Challenge */}
+        <div className="grid lg:grid-cols-2 gap-14 items-start">
+
+          {/* LEFT — THE CHALLENGE */}
           <div
             ref={challengeRef}
             className="transition-all duration-700"
-            style={{ opacity: 0, transform: "translateX(-50px)" }}
+            style={{ opacity: 0, transform: "translateX(-60px)" }}
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">
               The Challenge
             </h2>
-            <p className="text-gray-600 leading-relaxed mb-6">
+
+            <p className="text-gray-700 text-lg leading-relaxed mb-8 font-medium">
               Tier 2-3 colleges lack robust incubation infrastructure, funding
               networks, and startup support systems. Students with innovative
-              ideas often lack the resources and guidance to turn them into
-              successful ventures.
+              ideas often lack the resources and guidance to scale their
+              ventures.
             </p>
 
-            <div className="space-y-3">
+            <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <IoMdCheckmarkCircle className="w-5 h-5 text-[#32808D] mt-1 flex-shrink-0" />
-                <span className="text-gray-700">
-                  80% of tier 2-3 colleges lack incubation centers
+                <IoMdCheckmarkCircle className="w-6 h-6 text-[#32808D] mt-1 flex-shrink-0" />
+                <span className="text-gray-800 text-lg font-semibold">
+                  80% of tier 2-3 colleges lack fully functional incubation centers
                 </span>
               </div>
+
               <div className="flex items-start gap-3">
-                <IoMdCheckmarkCircle className="w-5 h-5 text-[#32808D] mt-1 flex-shrink-0" />
-                <span className="text-gray-700">
-                  65% students never exposed to entrepreneurship
+                <IoMdCheckmarkCircle className="w-6 h-6 text-[#32808D] mt-1 flex-shrink-0" />
+                <span className="text-gray-800 text-lg font-semibold">
+                  65% of students never receive entrepreneurship exposure
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Our Solution */}
+          {/* RIGHT — OUR SOLUTION */}
           <div
             ref={solutionRef}
             className="transition-all duration-700"
-            style={{ opacity: 0, transform: "translateX(50px)" }}
+            style={{ opacity: 0, transform: "translateX(60px)" }}
           >
-            <h2 className="text-4xl font-bold text-[#32808D] mb-6">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-[#32808D] mb-6 tracking-tight">
               Our Solution
             </h2>
-            <p className="text-gray-600 leading-relaxed mb-6">
-              TheSparknova provides end-to-end incubation support, bridging the
-              gap between colleges and the startup ecosystem. We empower
-              institutions to create world-class entrepreneurial environments.
+
+            <p className="text-gray-700 text-lg leading-relaxed mb-8 font-medium">
+              TheSparknova delivers end-to-end incubation infrastructure,
+              mentorship pipelines, startup programs, and ecosystem partnerships —
+              enabling colleges to build powerful entrepreneurial environments.
             </p>
 
-            <button className="bg-[#32808D] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#2a6d7a] transition-colors flex items-center gap-2">
+            <button
+              className="bg-[#32808D] text-white px-7 py-3.5 rounded-xl 
+                         font-semibold text-lg shadow-md hover:shadow-lg
+                         hover:bg-[#286c7a] transition-all flex items-center gap-3
+                         active:scale-95"
+            >
               Learn More
-              <FaArrowRight className="w-4 h-4" />
+              <FaArrowRight className="w-5 h-5" />
             </button>
           </div>
         </div>

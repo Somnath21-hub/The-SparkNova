@@ -64,20 +64,33 @@ const HeroSection = () => {
       <BgIllustration />
 
       <div className="relative z-10 max-w-4xl w-full mx-auto">
+
+        {/* 🟡 Animated Highlight Headline */}
         <h2
           ref={headlineRef}
-          className="text-4xl md:text-6xl font-extrabold leading-tight text-[#0d2b2e] mb-6 pt-16 tracking-tight"
+          className="text-4xl md:text-6xl font-extrabold leading-tight text-[#0d2b2e] mb-6 pt-16 tracking-tight relative inline-block"
         >
-          Empowering Tier 2-3 College Incubation Centers to Build Tomorrow's
-          Startups
+          <span className="relative z-10">
+            Empowering Tier 2-3 College Incubation Centers to Build Tomorrow's
+            Startups
+          </span>
+
+          {/* Highlight behind text */}
+          <span className="absolute left-0 bottom-1 w-full h-4 bg-[#00e0da4b] blur-sm rounded-md animate-pulse"></span>
         </h2>
 
+        {/* 🟦 Smooth Underline Highlight */}
         <p
           ref={descRef}
-          className="text-gray-600 mt-2 text-lg max-w-2xl mx-auto mb-10"
+          className="text-gray-700 mt-3 text-xl max-w-3xl mx-auto mb-12 leading-relaxed tracking-wide font-medium relative inline-block"
         >
-          Complete ecosystem support — from funding to mentorship, events to
-          infrastructure
+          <span className="relative z-10">
+            Complete ecosystem support from funding to mentorship, events to
+            infrastructure.
+          </span>
+
+          {/* Underline effect */}
+          <span className="absolute left-0 -bottom-1 w-full h-[3px] bg-[#00b3b3] rounded-full animate-[highlight_2s_ease-out_infinite]"></span>
         </p>
 
         <div
@@ -94,13 +107,19 @@ const HeroSection = () => {
 
         <div
           ref={statsRef}
-          className="flex flex-wrap justify-center space-x-0 sm:space-x-6 mt-10 text-gray-700 font-medium bg-white/80 rounded-lg p-4 shadow-sm backdrop-blur"
+          className="flex flex-wrap justify-center items-center gap-4 sm:gap-8 mt-10
+                     text-gray-800 font-semibold bg-white/90 rounded-xl p-6 
+                     shadow-md backdrop-blur-lg tracking-wide text-lg"
         >
-          <div className="mb-2 sm:mb-0">50+ Partner Colleges</div>
-          <span className="hidden sm:inline">|</span>
-          <div className="mb-2 sm:mb-0">200+ Startups Supported</div>
-          <span className="hidden sm:inline">|</span>
-          <div>₹5Cr+ Funding Facilitated</div>
+          <div className="text-center">50+ Partner Colleges</div>
+
+          <span className="hidden sm:inline text-gray-400">|</span>
+
+          <div className="text-center">200+ Startups Supported</div>
+
+          <span className="hidden sm:inline text-gray-400">|</span>
+
+          <div className="text-center">₹5Cr+ Funding Facilitated</div>
         </div>
       </div>
     </section>

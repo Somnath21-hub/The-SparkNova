@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { FaQuoteLeft } from "react-icons/fa";
 
 const SuccessStories = () => {
   const titleRef = useRef(null);
@@ -9,22 +10,21 @@ const SuccessStories = () => {
     gsap.fromTo(
       titleRef.current,
       { opacity: 0, y: 40 },
-      { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }
+      { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
     );
-    if (cardsRef.current) {
-      gsap.fromTo(
-        cardsRef.current,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          ease: "power3.out",
-          stagger: 0.18,
-          delay: 0.15,
-        }
-      );
-    }
+
+    gsap.fromTo(
+      cardsRef.current,
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.22,
+        delay: 0.2,
+      }
+    );
   }, []);
 
   const stories = [
@@ -49,33 +49,84 @@ const SuccessStories = () => {
   ];
 
   return (
-    <section className="bg-gradient-to-br from-cyan-50 via-white to-teal-50 py-20 px-4">
-      <div className="max-w-7xl mx-auto">
-        {/* Title */}
-        <div ref={titleRef} className="text-center mb-12">
-          <h2 className="text-4xl font-extrabold text-[#0d2b2e] mb-3 tracking-tight">
+    <section className="relative py-24 px-6 bg-[#e8f8f8] overflow-hidden">
+
+      {/* Animated Glow Background */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(0,200,200,0.25),transparent_60%)] pointer-events-none"></div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
+
+        {/* SECTION TITLE WITH NEON STROKE */}
+        <div ref={titleRef} className="text-center mb-16">
+          <h2
+            className="
+              text-5xl md:text-6xl font-extrabold 
+              text-transparent bg-clip-text 
+              bg-gradient-to-r from-[#0ca3b3] via-[#007f7a] to-[#0ca3b3]
+              drop-shadow-[0_4px_15px_rgba(0,200,200,0.4)]
+            "
+          >
             Success Stories
           </h2>
-          <p className="text-gray-600 text-lg">Hear from our community</p>
+          <p className="text-gray-700 text-lg mt-2">
+            Real experiences that define our impact
+          </p>
         </div>
-        {/* Stories Grid */}
-        <div className="grid md:grid-cols-3 gap-8">
+
+        {/* STORIES GRID */}
+        <div className="grid md:grid-cols-3 gap-10">
           {stories.map((story, index) => (
             <div
               key={index}
               ref={(el) => (cardsRef.current[index] = el)}
-              className="story-card bg-white/90 backdrop-blur rounded-2xl p-8 border-t-4 border-cyan-100 hover:border-teal-400 shadow transition duration-300 flex flex-col items-start"
+              className="
+                group relative p-8 rounded-3xl 
+                bg-white/70 backdrop-blur-lg 
+                border border-white/40 shadow-lg
+                hover:-translate-y-4 transition-all duration-500 
+                hover:shadow-[0_15px_50px_rgba(0,150,150,0.35)]
+                hover:scale-[1.03]
+              "
             >
-              <p className="text-gray-700 italic mb-6 leading-relaxed">
+              {/* GLOW BORDER ANIMATION */}
+              <div
+                className="
+                  absolute inset-0 rounded-3xl 
+                  bg-gradient-to-br from-[#00bfb3] to-[#006d68]
+                  opacity-0 group-hover:opacity-20 blur-2xl 
+                  transition-all duration-500
+                "
+              ></div>
+
+              {/* Ambient spotlight */}
+              <div className="absolute -top-10 right-0 w-28 h-28 bg-[#00c4bb]/20 rounded-full blur-3xl"></div>
+
+              {/* Floating glowing quote icon */}
+              <FaQuoteLeft
+                className="
+                  text-[#009d96] text-4xl mb-5 
+                  drop-shadow-[0_4px_10px_rgba(0,170,170,0.5)]
+                  transform group-hover:-translate-y-1 transition-all
+                "
+              />
+
+              {/* Quote */}
+              <p className="text-gray-800 italic leading-relaxed mb-8 text-[15px]">
                 {story.quote}
               </p>
+
+              {/* Author */}
               <div className="mt-auto">
-                <p className="font-bold text-[#00b3b3]">{story.name}</p>
+                <p className="font-bold text-[#007f7a] text-lg">
+                  {story.name}
+                </p>
                 <p className="text-sm text-gray-600">{story.role}</p>
               </div>
+
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );

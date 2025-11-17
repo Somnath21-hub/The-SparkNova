@@ -52,7 +52,7 @@ const Support = () => {
       icon: <FaChartLine className="w-7 h-7" />,
       title: "Funding Support",
       description:
-        "Connect with angel investors, VCs, and government schemes. Facilitate seed funding and grant applications.",
+        "Access seed funding, investor networks, and government grants with structured guidance.",
       features: [
         "Investor network access",
         "Pitch deck development",
@@ -63,21 +63,21 @@ const Support = () => {
       icon: <FaUsers className="w-7 h-7" />,
       title: "Network Access",
       description:
-        "Join a thriving community of founders, industry mentors, experts, and investors across India.",
+        "Connect with mentors, corporates, founders, and experts from across India.",
       features: ["150+ mentors", "Investor database", "Corporate partnerships"],
     },
     {
       icon: <FaLightbulb className="w-7 h-7" />,
       title: "Skill Development Events",
       description:
-        "Regular ideathons, workshops, bootcamps, and masterclasses to build entrepreneurial capabilities.",
+        "Launch ideathons, bootcamps, and startup workshops designed for young entrepreneurs.",
       features: ["SparkTank ideathon", "Founder bootcamps", "Domain workshops"],
     },
     {
       icon: <FaBuilding className="w-7 h-7" />,
       title: "Incubation Infrastructure",
       description:
-        "Complete setup support for incubation centers - from framework design to operational excellence.",
+        "End-to-end support to build and operate modern incubation centers.",
       features: [
         "Infrastructure design",
         "Governance models",
@@ -96,42 +96,52 @@ const Support = () => {
   ];
 
   return (
-    <section className="bg-gradient-to-br from-cyan-50 via-white to-teal-50 py-20 px-4">
+    <section className="bg-gradient-to-br from-cyan-50 via-white to-teal-50 py-20 px-6">
       <div className="max-w-7xl mx-auto">
-        {/* Title */}
-        <div ref={titleRef} className="text-center mb-14">
-          <h2 className="text-4xl font-extrabold text-[#0d2b2e] mb-3 tracking-tight">
+
+        {/* Section Title */}
+        <div ref={titleRef} className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-[#0d2b2e] tracking-tight mb-4">
             Comprehensive Support for Your Success
           </h2>
-          <p className="text-gray-600 text-lg">
-            Four pillars of our ecosystem support
+          <p className="text-gray-700 text-[18px] font-semibold tracking-wide">
+            Our ecosystem is built on four powerful pillars
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-7 mb-16">
+        {/* Feature Cards */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
           {supports.map((support, index) => (
             <div
               key={index}
               ref={(el) => (cardsRef.current[index] = el)}
-              className="bg-white rounded-2xl p-7 border-t-4 border-cyan-100 hover:border-[#00b3b3] hover:shadow-lg hover:-translate-y-2 transition-transform duration-200 flex flex-col group"
+              className="bg-white rounded-2xl p-7 shadow-sm border border-cyan-100
+                         hover:shadow-2xl hover:border-[#00b3b3] hover:-translate-y-2 
+                         transition-all duration-300 group"
             >
-              <div className="w-14 h-14 bg-gradient-to-tr from-cyan-100 to-teal-100 rounded-lg flex items-center justify-center mb-4 text-[#00b3b3] group-hover:scale-105 transition-transform">
+              <div className="w-14 h-14 bg-gradient-to-br from-cyan-100 to-teal-100 rounded-xl 
+                              flex items-center justify-center mb-5 text-[#00b3b3] 
+                              group-hover:scale-110 transition-transform">
                 {support.icon}
               </div>
-              <h3 className="text-lg font-bold text-[#0d2b2e] mb-3 tracking-tight group-hover:text-[#00b3b3] transition-colors">
+
+              <h3 className="text-xl font-bold text-[#0d2b2e] mb-3 tracking-tight group-hover:text-[#00b3b3] transition-colors">
                 {support.title}
               </h3>
-              <p className="text-gray-600 text-sm leading-relaxed mb-4">
+
+              {/* Improved Description Font */}
+              <p className="text-gray-700 text-[15.5px] leading-relaxed mb-5 font-medium tracking-wide">
                 {support.description}
               </p>
+
               <ul className="space-y-2">
                 {support.features.map((feature, idx) => (
                   <li
                     key={idx}
-                    className="text-gray-700 text-sm flex items-start gap-2"
+                    className="text-gray-700 text-[15px] leading-loose flex items-start gap-2 font-medium"
                   >
                     <span className="text-[#00b3b3] mt-1">•</span>
-                    <span>{feature}</span>
+                    {feature}
                   </li>
                 ))}
               </ul>
@@ -139,20 +149,25 @@ const Support = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mt-2">
+        {/* Stats Section */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
           {stats.map((stat, index) => (
             <div
               key={index}
               ref={(el) => (statsRef.current[index] = el)}
-              className="text-center bg-white rounded-xl p-4 shadow border border-cyan-100"
+              className="text-center bg-white rounded-xl p-6 shadow-sm border border-cyan-100
+                         hover:shadow-xl transition-all"
             >
-              <div className="text-2xl md:text-3xl font-bold text-[#00b3b3] mb-1">
+              <div className="text-3xl font-extrabold text-[#00b3b3] mb-1 tracking-tight">
                 {stat.value}
               </div>
-              <div className="text-gray-600 text-sm">{stat.label}</div>
+              <div className="text-gray-700 font-semibold text-[14.5px] tracking-wide">
+                {stat.label}
+              </div>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );
